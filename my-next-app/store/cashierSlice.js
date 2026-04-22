@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 import { storage } from '@/utils/localStorage';
 import axios from 'axios';
 
+const tokenFromStorage = storage.getToken();
+
 const initialState = {
   token: tokenFromStorage,
   isConnected: false,
