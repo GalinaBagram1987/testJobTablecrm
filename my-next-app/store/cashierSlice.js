@@ -51,7 +51,6 @@ export const connectCashier = (token) => async (dispatch) => {
     }
     // Если запрос успешен, сохраняем токен и считаем кассу подключённой
     dispatch(connectSuccess({ token }));
-    // Здесь также можно загрузить справочники (организации, склады и т.д.)
   } catch (error) {
     dispatch(connectFailure({ error: error.message }));
   }
