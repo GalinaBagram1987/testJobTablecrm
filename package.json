@@ -1,0 +1,15 @@
+{
+  "name": "testjobtablecrm",
+  "version": "1.0.0",
+  "description": "test job for Tablecrm company",
+  "license": "ISC",
+  "author": "Galina Bagram",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "eslint": "^10.2.1"
+  }
+}
