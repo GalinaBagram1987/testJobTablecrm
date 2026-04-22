@@ -53,8 +53,8 @@ const Header = () => {
   });
 
   return (
-    <>
-    <Card className="max-w-md mx-auto my-8 shadow-md">
+    <div className="w-full max-w-md mx-auto space-y-8">
+    <Card className="shadow-md">
       <CardHeader>
         <CardTitle className="font-serif text-gray-500 font-thin text-xl uppercase text-muted-foreground tracking-widest transform scale-y-[0.7]">tablecrm.com</CardTitle>
       </CardHeader>
@@ -66,7 +66,7 @@ const Header = () => {
           }`}>Касса{isConnected ? ' подключена' : ' не подключена'}</p>
       </CardContent>
     </Card>
-    <Card className="max-w-md mx-auto my-8 shadow-md">
+    <Card className="shadow-md">
       <CardHeader>
         <CardTitle className="space-y-2">
           <div className="flex items-center gap-2">
@@ -84,16 +84,16 @@ const Header = () => {
           <input
             {...register('token')}
             placeholder="Введите token кассы "
-            className="w-full px-3 py-2 border rounded-md"
+            className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-red-400/50"
           />
           {errors.token && <p className="text-red-500 text-sm">{errors.token.message}</p>}
-          <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600">
+          <button type="submit" className="w-full bg-red-500 text-white text-sm font-bold py-2 rounded-md hover:bg-red-600">
              Подключить
           </button>
         </form>
       </CardContent>
     </Card>
-    </>
+    </div>
   ) 
 }
 
