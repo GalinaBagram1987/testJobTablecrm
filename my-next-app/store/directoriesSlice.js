@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { loadDirectories } from '@/lib/api/apiMethods';
-import axios from 'axios';
 
 const initialState = {
   organizations: [],
@@ -11,7 +10,7 @@ const initialState = {
   loading: false,
 };
 
-const directoriesSlice = ({
+const directoriesSlice = createSlice({
   name: 'directories',
   initialState,
   reducers: {

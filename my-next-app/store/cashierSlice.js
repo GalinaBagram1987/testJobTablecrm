@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { storage } from '@/utils/localStorage';
-import axios from 'axios';
+import { sendToken } from '@/lib/api/apiMethods';
 
 const tokenFromStorage = storage.getToken();
 
@@ -23,7 +23,7 @@ const cashierSlice = createSlice({
       state.token = action.payload.token;
       state.isConnected = true;
       state.isLoading = false;
-      storage.setToken(action.payload.token);
+      // storage.setToken(action.payload.token);
     },
     connectFailure: (state, action) => {
       state.isConnected = false;
@@ -44,13 +44,8 @@ export const { connectStart, connectSuccess, connectFailure, disconnect } = cash
 export const connectCashier = (token) => async (dispatch) => {
   dispatch(connectStart());
   try {
-    // Проверяем токен, делая запрос к API (например, список организаций)
-    const response = await axios (`https://app.tablecrm.com/api/v1/organizations/?token=${token}`);
-    if (!response.ok) {
-      throw new Error('Неверный токен или ошибка сети');
-    }
-    // Если запрос успешен, сохраняем токен и считаем кассу подключённой
-    dispatch(connectSuccess({ token }));
+    await sendToken(token); // здесь токен уже сохранится в localStorage
+    dispatch(connectSuccess({ token })); // обновляем Redux store
   } catch (error) {
     dispatch(connectFailure({ error: error.message }));
   }

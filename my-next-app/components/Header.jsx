@@ -9,11 +9,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import axios from 'axios';
 import { PlugZap, Phone, Plus, Box, ShoppingCart } from 'lucide-react';
 import * as React from "react"
 import { useForm } from 'react-hook-form';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
@@ -22,8 +21,6 @@ const Header = () => {
   // достаем данные из нашего сторе
   const dispatch = useDispatch();
   const { isConnected, isLoading, error } = useSelector((state) => state.cashier);
-  // состояние токена
-  const [inputToken, setInputToken] = useState('');
 
   // При загрузке страницы, если в localStorage есть токен, автоматически подключаемся
   useEffect(() => {
@@ -38,22 +35,21 @@ const Header = () => {
   const tokenSchema = z.object({
   token: z.string().min(1, "Токен обязателен"),
   });
-  // Подключение
-  const handleConnect = (inputToken) => {
-    if (!inputToken.trim()) return;
-    dispatch(connectCashier(inputToken));
-  };
-  // отправка данных
-   const onSubmit = (data) => {
-    handleConnect(data.token);
-  };
   //управление формой
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: zodResolver(tokenSchema),
   });
 
+  const onSubmit = (data) => {
+    console.log('onSubmit called with data:', data);
+    const { token } = data;
+    if (token && token.trim()) {
+      dispatch(connectCashier(token));
+    }
+  };
+
   return (
-    <div className="w-full max-w-md mx-auto space-y-8">
+    <div className="space-y-8">
     <Card className="shadow-md">
       <CardHeader>
         <CardTitle className="font-serif text-gray-500 font-thin text-xl uppercase text-muted-foreground tracking-widest transform scale-y-[0.7]">tablecrm.com</CardTitle>
