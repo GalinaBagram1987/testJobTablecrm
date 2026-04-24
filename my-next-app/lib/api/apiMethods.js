@@ -71,12 +71,15 @@ const submitOrder = async (orderData) => {
   }
 };
 
-const seachNomenclature = async (name) => {
+const searchNomenclature = async (name) => {
   if (!name) return [];
   try {
     const response = await apiWithInterceptors.get(API_ENDPOINTS.NOMENCLATURE, { params: { name } });
     const data = response.data?.result ?? response.data;
-    return Array.isArray(data) ? data : [];
+    return (Array.isArray(data) ? data : []).map(item => ({
+      ...item,
+      price: item.prices?.[0]?.price ?? 100, // пример
+    }));
   } catch (error) {
     console.error(error);
     return [];
@@ -84,4 +87,4 @@ const seachNomenclature = async (name) => {
 };
 
 
-export { searchClient, loadDirectories, submitOrder, sendToken, seachNomenclature };
+export { searchClient, loadDirectories, submitOrder, sendToken, searchNomenclature };

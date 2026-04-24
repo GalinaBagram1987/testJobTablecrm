@@ -1,7 +1,8 @@
-import Image from "next/image";
 import Header from '@/components/Header'
 import SeachClient from "@/components/SeachClient";
 import SaleParameters from "@/components/SaleParameters";
+import ProductsSeach from "@/components/SeachProducts";
+
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
           <Header />
           <SeachClient />
           <SaleParameters />
+          <ProductsSeach />
         </div>
       </main>
     </div>
