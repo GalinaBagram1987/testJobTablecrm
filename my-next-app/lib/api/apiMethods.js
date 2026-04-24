@@ -20,6 +20,10 @@ const sendToken = async (token) => {
 // Поиск клиента по телефону
 const searchClient = async (phone) => {
   if (!phone) return [];
+  // Мок для тестирования: если номер совпадает с тестовым, возвращаем данные
+  if (phone === '+79990000000') {
+    return [{ id: 999, short_name: 'ООО Пример', full_name: 'ООО Пример', phone: '+79990000000' }];
+  }
   try {
     const response = await apiWithInterceptors.get(API_ENDPOINTS.CONTRAGENTS, { params: { phone } });
     // Проверяем структуру ответа. Допустим, массив находится в response.data.result
@@ -46,6 +50,7 @@ const loadDirectories = async () => {
     apiWithInterceptors.get(API_ENDPOINTS.PRICE_TYPES),
     apiWithInterceptors.get(API_ENDPOINTS.NOMENCLATURE),
   ]);
+
   return {
     organizations: orgs.data?.result ?? [],
     warehouses: warehouses.data?.result ?? [],

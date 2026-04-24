@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { storage } from '@/utils/localStorage';
 import { sendToken } from '@/lib/api/apiMethods';
+import { loadDirector } from './directoriesSlice';
 
 const tokenFromStorage = storage.getToken();
 
@@ -41,14 +42,17 @@ const cashierSlice = createSlice({
 export const { connectStart, connectSuccess, connectFailure, disconnect } = cashierSlice.actions;
 
 // Асинхронный thunk для подключения кассы
-export const connectCashier = (token) => async (dispatch) => {
-  dispatch(connectStart());
-  try {
-    await sendToken(token); // здесь токен уже сохранится в localStorage
-    dispatch(connectSuccess({ token })); // обновляем Redux store
-  } catch (error) {
-    dispatch(connectFailure({ error: error.message }));
-  }
-};
+  export const connectCashier = (token) => async (dispatch) => {
+    dispatch(connectStart());
+    try {
+     await sendToken(token); // здесь токен уже сохранится в localStorage
+      dispatch(connectSuccess({ token })); // обновляем Redux store
+      dispatch(loadDirector()).catch(err => console.error('Ошибка загрузки справочников:', err));
+    } catch (error) {
+      dispatch(connectFailure({ error: error.message }));
+    }
+  };
 
 export default cashierSlice.reducer;
+
+
