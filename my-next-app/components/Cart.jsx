@@ -46,9 +46,6 @@ const CartProducts = () => {
             </div>
           ))}
         </div>
-        <div className="text-right font-bold">
-          Итого: {totalSum}
-        </div>
     </CardContent>
   </Card>
 );
