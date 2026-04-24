@@ -2,7 +2,7 @@
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { searchClientsByPhone, selectClient } from '@/store/clientSlice'; // убедитесь, что selectClient экспортирован из слайса
+import { searchClientsByPhone, selectClient } from '@/store/clientSlice';
 import {
   Card,
   CardContent,
@@ -18,6 +18,7 @@ const SearchClient = () => {
   const dispatch = useDispatch();
   const { searchResults, selectedClient, isLoading, error } = useSelector((state) => state.client);
 
+  // Создаем форму
   // Валидация номера телефона
   const phoneSchema = z.object({
     tel: z.string()
@@ -49,7 +50,7 @@ const SearchClient = () => {
               <Phone className="w-5 h-5" />
               <h2 className="text-lg font-semibold">2. Клиент</h2>
             </div>
-            <p>Поиск клиента по телефону</p>
+            <p className='text-gray-500 font-normal'>Поиск клиента по телефону</p>
           </CardTitle>
         </CardHeader>
         <CardContent>

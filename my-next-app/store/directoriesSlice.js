@@ -8,6 +8,7 @@ const initialState = {
   priceTypes: [],
   nomenclature: [],
   loading: false,
+  error: null,
 };
 
 const directoriesSlice = createSlice({
@@ -17,6 +18,11 @@ const directoriesSlice = createSlice({
     fetchStart(state) {
       state.loading = true;
       state.error = null;
+      state.organizations = []; // очищаем старые результаты
+      state.warehouses = [];
+      state.payboxes = [];
+      state.priceTypes = [];
+      state.nomenclature = [];
     },
     fetchSuccess(state, action) {
       state.loading = false;
@@ -26,10 +32,16 @@ const directoriesSlice = createSlice({
       state.payboxes = payboxes;
       state.priceTypes = priceTypes;
       state.nomenclature = nomenclature;
+      state.error = null;
     },
     fetchFailure(state, action) {
       state.loading = false;
       state.error = action.payload;
+      state.organizations = []; // ошибка. не пришли данные
+      state.warehouses = [];
+      state.payboxes = [];
+      state.priceTypes = [];
+      state.nomenclature = [];
     },
   },
 });

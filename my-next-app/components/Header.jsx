@@ -69,7 +69,7 @@ const Header = () => {
             <PlugZap className="w-5 h-5" />
             <h2 className="text-lg font-semibold">1. Подключение кассы</h2>
             </div>
-          <p>Введите токен и загрузите справочники</p>
+          <p className='text-gray-500 font-normal'>Введите токен и загрузите справочники</p>
         </CardTitle>
       </CardHeader>
       <CardContent>

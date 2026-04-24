@@ -47,11 +47,11 @@ const loadDirectories = async () => {
     apiWithInterceptors.get(API_ENDPOINTS.NOMENCLATURE),
   ]);
   return {
-    organizations: orgs.data,
-    warehouses: warehouses.data,
-    payboxes: payboxes.data,
-    priceTypes: priceTypes.data,
-    nomenclature: nomenclature.data,
+    organizations: orgs.data?.result ?? [],
+    warehouses: warehouses.data?.result ?? [],
+    payboxes: payboxes.data?.result ?? [],
+    priceTypes: priceTypes.data?.result ?? [],
+    nomenclature: nomenclature.data?.result ?? [],
   };
 };
 
