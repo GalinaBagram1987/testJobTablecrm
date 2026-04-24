@@ -71,4 +71,17 @@ const submitOrder = async (orderData) => {
   }
 };
 
-export { searchClient, loadDirectories, submitOrder, sendToken };
+const seachNomenclature = async (name) => {
+  if (!name) return [];
+  try {
+    const response = await apiWithInterceptors.get(API_ENDPOINTS.NOMENCLATURE, { params: { name } });
+    const data = response.data?.result ?? response.data;
+    return Array.isArray(data) ? data : [];
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
+
+export { searchClient, loadDirectories, submitOrder, sendToken, seachNomenclature };
