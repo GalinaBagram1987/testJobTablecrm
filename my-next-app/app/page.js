@@ -2,6 +2,8 @@ import Header from '@/components/Header'
 import SeachClient from "@/components/SeachClient";
 import SaleParameters from "@/components/SaleParameters";
 import ProductsSeach from "@/components/SeachProducts";
+import Cart from '@/components/Cart';
+import Comment from '@/components/CommentedFile';
 
 
 export default function Home() {
@@ -13,6 +15,8 @@ export default function Home() {
           <SeachClient />
           <SaleParameters />
           <ProductsSeach />
+          <Cart />
+          <Comment />
         </div>
       </main>
     </div>
