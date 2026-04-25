@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Search } from 'lucide-react';
 import { useDispatch } from 'react-redux';
 import { addItem } from '@/store/orderSlice';
-import { searchNomenclature } from '@/lib/api/apiMethods';
+import { searchNomenclature } from '@/api/apiMethods';
 import { Box } from 'lucide-react'
 import {
   Card,

@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { apiWithInterceptors } from '@/lib/api/axiosInstance';
-import { API_ENDPOINTS } from '@/lib/api/routes';
+import { apiWithInterceptors } from '@/api/axiosInstance';
+import { API_ENDPOINTS } from '@/api/routes';
 
 const initialState = {
   selectedOrganization: null,
