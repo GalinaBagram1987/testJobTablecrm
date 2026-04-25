@@ -1,16 +1,26 @@
-toml
+#toml
 
-[build]
-  base = "my-next-app"
-  command = "npm run build"
-  publish = "my-next-app/.next"
+#[build]
+  #base = "my-next-app"
+  #command = "npm run build"
+  #publish = "my-next-app/.next"
 
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+#[[plugins]]
+  #package = "@netlify/plugin-nextjs"
 
 # Добавьте эти строки для корректной маршрутизации SPA
+#[[redirects]]
+  #from = "/*"
+  #to = "/"
+  #status = 200
+  #force = true
+
+  [build]
+  base = "my-next-app"
+  command = "npm run build"
+  publish = "out"
+
 [[redirects]]
   from = "/*"
-  to = "/"
+  to = "/index.html"
   status = 200
-  force = true
