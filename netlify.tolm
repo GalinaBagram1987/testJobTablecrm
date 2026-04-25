@@ -1,9 +1,9 @@
 toml
 
-
 [build]
+  base = "my-next-app"
   command = "npm run build"
-  publish = ".next"
+  publish = "my-next-app/.next"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
