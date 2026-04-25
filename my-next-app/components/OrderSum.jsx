@@ -17,31 +17,29 @@ const OrderSummary = () => {
   };
 
   return (
-    <Card className="shadow-md">
-      <CardContent className="pt-6">
-        <div className="flex justify-between items-center">
+        <div className="py-6">
+          <div className="flex justify-between items-center mb-6">
           <span className="text-lg font-semibold">Итого:</span>
           <span className="text-2xl font-bold">{totalSum} </span>
         </div>
-      </CardContent>
-      <CardFooter className="flex flex-col gap-3 pb-6">
-        <Button
-          onClick={() => handleSubmit(false)}
-          disabled={!canSubmit || isSubmitting}
-          className="w-full"
-        >
-          {isSubmitting ? 'Отправка...' : 'Создать продажу'}
-        </Button>
-        <Button
-          onClick={() => handleSubmit(true)}
-          disabled={!canSubmit || isSubmitting}
-          className="w-full"
-          variant="outline"
-        >
-          {isSubmitting ? 'Отправка...' : 'Создать и провести'}
-        </Button>
-      </CardFooter>
-    </Card>
+        <div className="flex flex-col gap-3 pb-6">
+          <Button
+            onClick={() => handleSubmit(false)}
+            disabled={!canSubmit || isSubmitting}
+            className="w-full"
+          >
+            {isSubmitting ? 'Отправка...' : 'Создать продажу'}
+          </Button>
+          <Button
+            onClick={() => handleSubmit(true)}
+            disabled={!canSubmit || isSubmitting}
+            className="w-full"
+            variant="outline"
+          >
+            {isSubmitting ? 'Отправка...' : 'Создать и провести'}
+          </Button>
+        </div>
+    </div>
   );
 };
 

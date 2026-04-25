@@ -16,7 +16,7 @@ const Comment = () => {
   const { comment } = useSelector((state) => state.order);
 
   return (
-  <Card className="shadow-md">
+  <Card className="shadow-md mb-40">
     <CardHeader>
       <CardTitle className="space-y-2">
         <h2 className="flex items-center gap-2 text-lg font-semibold">Комментарий</h2>
