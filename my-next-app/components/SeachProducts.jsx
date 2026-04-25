@@ -73,7 +73,7 @@ const ProductsSeach = () => {
         </button>
       </div>
 
-      <div className="w-full px-3 py-2 border rounded-md min-h-[200px]">
+      <div className="w-full px-3 py-2 border rounded-md min-h-[70px]">
         {results.length === 0 && !isLoading && (
           <p className="text-gray-500">Товары не найдены</p>
         )}

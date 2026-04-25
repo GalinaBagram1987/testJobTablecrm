@@ -30,7 +30,7 @@ const CartProducts = () => {
       </CardTitle>
     </CardHeader>
       <CardContent className="space-y-4">
-        <div className="w-full px-3 py-2 border rounded-md min-h-[200px]">
+        <div className="w-full px-3 py-2 border rounded-md min-h-[70px]">
           {cart.length === 0 && (
             <p className="text-gray-500">Добавьте хотя бы один товар</p>
           )}
