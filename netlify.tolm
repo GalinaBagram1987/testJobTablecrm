@@ -7,3 +7,10 @@ toml
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# Добавьте эти строки для корректной маршрутизации SPA
+[[redirects]]
+  from = "/*"
+  to = "/"
+  status = 200
+  force = true
