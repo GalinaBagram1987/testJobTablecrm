@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { storage } from '@/utils/localStorage';
-import { sendToken } from '@/api/apiMethods';
+import { sendToken } from "@/lib/apiMethods";
 import { loadDirector } from './directoriesSlice';
 
 const tokenFromStorage = storage.getToken();

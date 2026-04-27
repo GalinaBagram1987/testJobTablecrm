@@ -1,21 +1,34 @@
 import { API_ENDPOINTS } from "./routes";
-import apiWithInterceptors from "./axiosInstance";
 import { storage } from "@/utils/localStorage";
 
 const callProxy = async (endpoint, method, token, data = null) => {
-  const response = await apiWithInterceptors.post('/api/proxy', {
-    url: endpoint,    // например 'organizations'
-    method,           // 'GET'
-    token,
-    body: data,
+  // ЛОГИКА ИНТЕРЦЕПТОРА:
+  // Если токен не передан явно, берем его из хранилища
+  const activeToken = token || storage.getToken();
+  const payload = { 
+    url: endpoint, 
+    method, 
+    token: activeToken, 
+    body: data 
+  };
+  console.log(' callProxy отправляет:', payload);
+  const response = await fetch('/api/proxy', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
   });
-  return response.data;
-}; 
+  console.log('status', response.status);
+  console.log('ok', response.ok);
+  const text = await response.text();
+  console.log('ответ прокси:', response.status, text);
+  if (!response.ok) throw new Error(`Proxy error: ${response.status}`);
+  return JSON.parse(text);
+};
 
 
 
 // Проверка токена
-const sendToken = async (token) => {
+export const sendToken = async (token) => {
   if (!token) return [];
   try {
     const data = await callProxy(API_ENDPOINTS.ORGANIZATIONS, 'GET', token);
@@ -30,7 +43,7 @@ const sendToken = async (token) => {
 
 
 // Поиск клиента по телефону
-const searchClient = async (phone, token) => {
+export const searchClient = async (phone, token) => {
   if (!phone) return [];
   if (phone === '+79990000000') {
     return [{ id: 999, short_name: 'ООО Пример', full_name: 'ООО Пример', phone: '+79990000000' }];
@@ -46,7 +59,7 @@ const searchClient = async (phone, token) => {
   }
 };
 // Загрузка справочников (возвращает объект с данными)
-const loadDirectories = async (token) => {
+export const loadDirectories = async (token) => {
   const [orgs, warehouses, payboxes, priceTypes, nomenclature] = await Promise.all([
     callProxy(API_ENDPOINTS.ORGANIZATIONS, 'GET', token),
     callProxy(API_ENDPOINTS.WAREHOUSES, 'GET', token),
@@ -65,7 +78,7 @@ const loadDirectories = async (token) => {
 };
 
 // Отправка заказа
-const submitOrder = async (orderData, token) => {
+export const submitOrder = async (orderData, token) => {
   try {
     const data = await callProxy(API_ENDPOINTS.CREATE_SALE, 'POST', token, orderData);
     return data;
@@ -76,7 +89,7 @@ const submitOrder = async (orderData, token) => {
 };
 
 // Поиск товаров
-const searchNomenclature = async (name, token) => {
+export const searchNomenclature = async (name, token) => {
   if (!name) return [];
   try {
     const url = `${API_ENDPOINTS.NOMENCLATURE}?name=${encodeURIComponent(name)}`;
@@ -91,6 +104,3 @@ const searchNomenclature = async (name, token) => {
     return [];
   }
 };
-
-
-export { searchClient, loadDirectories, submitOrder, sendToken, searchNomenclature };

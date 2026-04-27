@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loadDirectories } from '@/api/apiMethods';
+import { loadDirectories } from "@/lib/apiMethods";
 
 const initialState = {
   organizations: [],

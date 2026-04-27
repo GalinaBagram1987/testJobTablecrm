@@ -84,7 +84,7 @@ const Header = () => {
           />
           {errors.token && <p className="text-red-500 text-sm">{errors.token.message}</p>}
           <button type="submit" className="w-full bg-red-500 text-white text-sm font-bold py-2 rounded-md hover:bg-red-600">
-             Подключить
+             {isLoading ? 'идет подключение' : 'подключить'}
           </button>
         </form>
       </CardContent>

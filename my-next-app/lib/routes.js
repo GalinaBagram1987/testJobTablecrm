@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://app.tablecrm.com/api/v1/';
+export const BASE_URL = 'https://app.tablecrm.com/api/v1';
 
 export const API_ENDPOINTS = {
   // Справочники (загружаются после подключения кассы)

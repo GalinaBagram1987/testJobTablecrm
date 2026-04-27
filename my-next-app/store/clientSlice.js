@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { searchClient } from "@/api/apiMethods";
+import { searchClient } from "@/lib/apiMethods";
+
 
 // Асинхронный thunk для поиска клиента по телефону
 export const searchClientsByPhone = createAsyncThunk(
